@@ -1,5 +1,5 @@
-let choices = ["rock", "paper", "scissors"];
-let getComputerChoice = () =>
+const choices = ["rock", "paper", "scissors"];
+const getComputerChoice = () =>
   choices[Math.floor(Math.random() * choices.length)];
 let userPoint = 0;
 let computerPoint = 0;
