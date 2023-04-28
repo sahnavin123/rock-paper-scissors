@@ -10,7 +10,7 @@ const playRound = (playerSelection, computerSelection) => {
         case 'rock':
             switch (computerChoice) {
                 case 'paper':
-                    return ("Computer");
+                    return ("computer");
                 case 'scissors':
                     return ("you");
                 default:
@@ -19,7 +19,7 @@ const playRound = (playerSelection, computerSelection) => {
         case 'paper':
             switch (computerChoice) {
                 case 'scissors':
-                    return ("Computer");
+                    return ("computer");
                 case 'rock':
                     return ("you");
                 default:
@@ -28,7 +28,7 @@ const playRound = (playerSelection, computerSelection) => {
         case 'scissors':
             switch (computerChoice) {
                 case 'rock':
-                    return ("Computer");
+                    return ("computer");
                 case 'paper':
                     return ("you");
                 default:
@@ -39,18 +39,18 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
-const printResult = (result) => {
+const printResult = (result, playerSelection, computerSelection ) => {
     switch (result) {
         case 'you':
             userPoint++;
-            console.log(`You have won with ${userPoint} points`);
+            console.log(`You chose ${playerSelection}, the computer chose ${computerSelection}.\nScore: You ${userPoint}, Computer ${computerPoint}. ${result} won.`);
             break;
-        case 'Computer':
+        case 'computer':
             computerPoint++;
-            console.log(`Computer has won with ${computerPoint} points`);
+            console.log(`You chose ${playerSelection}, the computer chose ${computerSelection}.\nScore: You ${userPoint}, Computer ${computerPoint}. ${result} won.`);
             break;
         case 'draw':
-            console.log("The game is draw");
+            console.log("Game is draw");
             break;
         default:
             console.log("invalid choice, please make a good choice");
@@ -62,7 +62,7 @@ const game = () => {
         const playerSelection = prompt("enter your choice");
         const computerSelection = getComputerChoice();
         const result = playRound(playerSelection, computerSelection);
-        printResult(result);
+        printResult(result, playerSelection, computerSelection);
     }
 }
 
