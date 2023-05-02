@@ -52,7 +52,7 @@ const printResult = (result, playerSelection, computerSelection) => {
       resultDiv.textContent = `You chose ${playerSelection}, the computer chose ${computerSelection}. Score: You ${userPoint}, Computer ${computerPoint}. ${result} won.`;
       break;
     case "draw":
-      resultDiv.textContent = "Game is draw";
+      resultDiv.textContent = `Game is draw! your point: ${userPoint}, Computer point: ${computerPoint}`;
       break;
     default:
       resultDiv.textContent = "Invalid choice, please make a good choice";
@@ -68,10 +68,10 @@ buttons.forEach((button) => {
     const result = playRound(playerSelection, computerSelection);
     printResult(result, playerSelection, computerSelection);
     if (userPoint === 5) {
-      alert("You won the game!");
+      alert(`You won the game! with 5 points`);
       resetGame();
     } else if (computerPoint === 5) {
-      alert("Computer won the game!");
+      alert("Computer won the game! with 5 points");
       resetGame();
     }
   });
