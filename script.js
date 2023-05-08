@@ -36,39 +36,48 @@ const playRound = (playerSelection, computerSelection) => {
           return "draw";
       }
     default:
-      return "The choice is invalid. Please write valid input";
+      return "invalid";
   }
 };
 
 const printResult = (result, playerSelection, computerSelection) => {
+  const resultDiv = document.querySelector("#result");
   switch (result) {
     case "you":
       userPoint++;
-      console.log(
-        `You chose ${playerSelection}, the computer chose ${computerSelection}.\nScore: You ${userPoint}, Computer ${computerPoint}. ${result} won.`
-      );
+      resultDiv.textContent = `You chose ${playerSelection}, the computer chose ${computerSelection}. Score: You ${userPoint}, Computer ${computerPoint}. ${result} won.`;
       break;
     case "computer":
       computerPoint++;
-      console.log(
-        `You chose ${playerSelection}, the computer chose ${computerSelection}.\nScore: You ${userPoint}, Computer ${computerPoint}. ${result} won.`
-      );
+      resultDiv.textContent = `You chose ${playerSelection}, the computer chose ${computerSelection}. Score: You ${userPoint}, Computer ${computerPoint}. ${result} won.`;
       break;
     case "draw":
-      console.log("Game is draw");
+      resultDiv.textContent = `Game is draw! your point: ${userPoint}, Computer point: ${computerPoint}`;
       break;
     default:
-      console.log("invalid choice, please make a good choice");
+      resultDiv.textContent = "Invalid choice, please make a good choice";
+      break;
   }
 };
 
-const game = () => {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("enter your choice");
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click",  () => {
+    const playerSelection = button.id;
     const computerSelection = getComputerChoice();
     const result = playRound(playerSelection, computerSelection);
     printResult(result, playerSelection, computerSelection);
-  }
-};
+    if (userPoint === 5) {
+      alert(`You won the game! with 5 points`);
+      resetGame();
+    } else if (computerPoint === 5) {
+      alert("Computer won the game! with 5 points");
+      resetGame();
+    }
+  });
+});
 
-game();
+const resetGame = () => {
+  userPoint = 0;
+  computerPoint = 0;
+};
